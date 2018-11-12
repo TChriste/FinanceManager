@@ -8,11 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.List;
+
+import heg.financemanager.business.Compte;
+import heg.financemanager.dao.ComptesDAO;
 
 public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -26,6 +33,20 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        // ------------- TEST BASE DE DONNEES SQLLITE  ---------------------------------------------
+
+        ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
+
+        comptesDAO.open();
+        comptesDAO.insertCompte(new Compte("BCJ"));
+
+        List<Compte> comptesList = comptesDAO.getComptes();
+        String testBD = comptesList.get(0).getLibelle();
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(testBD);
     }
 
     @Override

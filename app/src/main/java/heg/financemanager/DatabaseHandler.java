@@ -10,11 +10,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COMPTES_SOLDE = "solde";
 
     public static final String COMPTES_TABLE_NAME = "Comptes";
+
     public static final String COMPTES_TABLE_CREATE =
             "CREATE TABLE " + COMPTES_TABLE_NAME + " (" +
                     COMPTES_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COMPTES_LIBELLE + " TEXT, " +
                     COMPTES_SOLDE + " REAL);";
+
     public static final String COMPTES_TABLE_DROP = "DROP TABLE IF EXISTS " + COMPTES_TABLE_NAME + ";";
 
 
@@ -24,7 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(COMPTES_TABLE_NAME);
+        db.execSQL(COMPTES_TABLE_CREATE);
     }
 
     @Override
@@ -32,5 +34,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(COMPTES_TABLE_DROP);
         onCreate(db);
     }
+
 }
 
