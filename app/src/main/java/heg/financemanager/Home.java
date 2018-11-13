@@ -1,5 +1,6 @@
 package heg.financemanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,21 +34,16 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
-        // ------------- TEST BASE DE DONNEES SQLLITE  ---------------------------------------------
-
-        ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
-
-        comptesDAO.open();
-        comptesDAO.insertCompte(new Compte("BCJ"));
-
-        List<Compte> comptesList = comptesDAO.getComptes();
-        String testBD = comptesList.get(0).getLibelle();
-
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(testBD);
     }
+
+
+
+    public void onBtnComptes(View view) {
+        Intent intent = new Intent(this, ComptesActivity.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

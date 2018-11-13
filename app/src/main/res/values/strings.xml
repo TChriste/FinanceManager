@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FinanceManager</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_comptes">Gestion des comptes</string>
+    <string name="gestion_comptes_btn">Comptes</string>
+    <string name="gestion_categories_btn">Catégories</string>
 </resources>
