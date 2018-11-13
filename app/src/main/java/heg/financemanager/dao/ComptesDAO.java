@@ -61,5 +61,36 @@ public class ComptesDAO extends AbstractDAO{
         return comptes;
     }
 
+    public Compte updateCompte(Compte compte){
+        ContentValues values = new ContentValues();
+        values.put(SOLDE, compte.getSolde());
+        values.put(LIBELLE, compte.getLibelle());
 
+        String selection = KEY + " = ?";
+        String[] selectionArgs = {String.valueOf(compte.getId())};
+
+        int count = db.update(  TABLE_NAME,
+                                values,
+                                selection,
+                                selectionArgs
+                             );
+        if(count > 0){
+            return compte;
+        }else{
+            return null;
+        }
+    }
+
+    public Compte deleteCompte(Compte compte){
+        String selection = KEY + " = ?";
+        String[] selectionArgs = {String.valueOf(compte.getId())};
+        int deletedRows = db.delete(TABLE_NAME, selection, selectionArgs);
+
+        if(deletedRows > 0){
+            return compte;
+        }else{
+            return null;
+        }
+
+    }
 }
