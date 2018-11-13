@@ -29,6 +29,7 @@ public class ComptesDAO extends AbstractDAO{
         db.beginTransaction();
         long newRowId = db.insert(TABLE_NAME,null,values);
         db.setTransactionSuccessful();
+        db.endTransaction();
 
         compte.setId(newRowId);
         return compte;

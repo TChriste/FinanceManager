@@ -4,4 +4,5 @@
     <string name="title_activity_comptes">Gestion des comptes</string>
     <string name="gestion_comptes_btn">Comptes</string>
     <string name="gestion_categories_btn">Catégories</string>
+    <string name="emptyList">Aucune donnée</string>
 </resources>
