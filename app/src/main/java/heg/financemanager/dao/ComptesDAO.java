@@ -118,6 +118,5 @@ public class ComptesDAO extends AbstractDAO{
         }else{
             return null;
         }
-
     }
 }
