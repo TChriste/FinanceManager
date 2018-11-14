@@ -1,5 +1,9 @@
 package heg.financemanager;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.LauncherActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,23 +37,14 @@ public class ComptesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(ComptesActivity.this, AddComptesActivity.class));
             }
         });
 
 
-
-        // ------------- TEST BASE DE DONNEES SQLLITE  ---------------------------------------------
         ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
         comptesDAO.open();
-
-        //comptesDAO.insertCompte(new Compte("Compte revenu"));
-        //comptesDAO.insertCompte(new Compte("Compte épargne"));   //Lignes à Supprimer une fois l'ajout opérationnel
-
         List<Compte> comptesList = comptesDAO.getComptes();
-
-
         List<String> comptesLibelles = new ArrayList<>();
         if(!comptesList.isEmpty()){
             for(Compte compte : comptesList){
@@ -58,14 +54,10 @@ public class ComptesActivity extends AppCompatActivity {
         String[] comptesLibelleArray = comptesLibelles.toArray(new String[0]);
 
 
-
         ListView mListView = (ListView) findViewById(R.id.list_comptes);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ComptesActivity.this, android.R.layout.simple_list_item_1, comptesLibelleArray);
         mListView.setAdapter(adapter);
         mListView.setEmptyView(findViewById(R.id.empty_list_item));
 
-
-
     }
-
 }
