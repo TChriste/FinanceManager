@@ -38,5 +38,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ComptesActivity" />
         </activity>
+        <activity
+            android:name=".EditComptesActivity"
+            android:label="@string/title_edit_comptes"
+            android:parentActivityName=".ComptesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ComptesActivity" />
+        </activity>
     </application>
+
 </manifest>

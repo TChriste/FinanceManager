@@ -13,9 +13,11 @@ import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ import heg.financemanager.business.Compte;
 import heg.financemanager.dao.ComptesDAO;
 
 public class ComptesActivity extends AppCompatActivity {
+
+    public static final String EXTRA_ID = "heg.financemanager.ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +44,9 @@ public class ComptesActivity extends AppCompatActivity {
                 startActivity(new Intent(ComptesActivity.this, AddComptesActivity.class));
             }
         });
-
-
-        ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
+        final ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
         comptesDAO.open();
-        List<Compte> comptesList = comptesDAO.getComptes();
+        final List<Compte> comptesList = comptesDAO.getComptes();
         List<String> comptesLibelles = new ArrayList<>();
         if(!comptesList.isEmpty()){
             for(Compte compte : comptesList){
@@ -53,11 +55,18 @@ public class ComptesActivity extends AppCompatActivity {
         }
         String[] comptesLibelleArray = comptesLibelles.toArray(new String[0]);
 
-
         ListView mListView = (ListView) findViewById(R.id.list_comptes);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ComptesActivity.this, android.R.layout.simple_list_item_1, comptesLibelleArray);
         mListView.setAdapter(adapter);
         mListView.setEmptyView(findViewById(R.id.empty_list_item));
-
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ComptesActivity.this, EditComptesActivity.class);
+                intent.putExtra(EXTRA_ID, comptesList.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
+
 }

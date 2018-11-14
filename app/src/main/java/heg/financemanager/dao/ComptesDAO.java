@@ -62,6 +62,32 @@ public class ComptesDAO extends AbstractDAO{
         return comptes;
     }
 
+    public Compte getCompteById(long id){
+        String[] projection = {"id", "libelle", "solde"};
+
+        String selection = KEY + " = ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        Cursor cursor = db.query(
+                TABLE_NAME,          // The table to query
+                projection,          // The array of columns to return (pass null to get all)
+                selection,       // The columns for the WHERE clause
+                selectionArgs,    // The values for the WHERE clause
+                null,       // don't group the rows
+                null,        // don't filter by row groups
+                null           // The sort order
+        );
+
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+            String itemLibelle = cursor.getString(cursor.getColumnIndexOrThrow("libelle"));
+            float itemSolde = cursor.getFloat(cursor.getColumnIndexOrThrow("solde"));
+
+            return new Compte(itemId,itemLibelle,itemSolde);
+        }
+        return null;
+    }
+
     public Compte updateCompte(Compte compte){
         ContentValues values = new ContentValues();
         values.put(SOLDE, compte.getSolde());

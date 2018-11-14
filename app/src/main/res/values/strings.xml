@@ -6,5 +6,6 @@
     <string name="gestion_categories_btn">Catégories</string>
     <string name="emptyList">Aucune donnée</string>
     <string name="title_add_comptes">Ajouter un compte</string>
+    <string name="title_edit_comptes">Modifier un compte</string>
     <string name="btn_validate">Sauvegarder</string>
 </resources>
