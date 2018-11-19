@@ -1,14 +1,18 @@
 package heg.financemanager.business;
 
+import java.util.Date;
+
 public class Transaction {
 
     private long id;
     private Compte compte;
     private Categorie categorie;
     private float montant;
+    private Date date;
 
-    public Transaction(long id, Compte compte, Categorie categorie, float montant) {
+    public Transaction(long id, Date date, Compte compte, Categorie categorie, float montant) {
         this.id = id;
+        this.date = date;
         this.compte = compte;
         this.categorie = categorie;
         this.montant = montant;
@@ -16,6 +20,18 @@ public class Transaction {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Compte getCompte() {
