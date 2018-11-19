@@ -9,4 +9,5 @@
     <string name="title_edit_comptes">Modifier un compte</string>
     <string name="btn_validate">Sauvegarder</string>
     <string name="btn_delete">Supprimer</string>
+    <string name="placeholder_inputBankAccountName">Libellé</string>
 </resources>
