@@ -21,4 +21,8 @@ public class Categorie {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
