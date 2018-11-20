@@ -10,4 +10,8 @@
     <string name="btn_validate">Sauvegarder</string>
     <string name="btn_delete">Supprimer</string>
     <string name="placeholder_inputBankAccountName">Libellé</string>
+    <string name="title_activity_categories">Gestion des catégories</string>
+    <string name="placeholder_inputCategoryName">Libellé</string>
+    <string name="title_add_category">Ajouter une catégorie</string>
+    <string name="title_edit_category">Modifier une catégorie</string>
 </resources>

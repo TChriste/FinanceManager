@@ -9,6 +9,10 @@ public class Categorie {
         return id;
     }
 
+    public Categorie(String libelle) {
+        this.id = -1;
+        this.libelle = libelle;
+    }
     public Categorie(long id, String libelle) {
         this.id = id;
         this.libelle = libelle;
