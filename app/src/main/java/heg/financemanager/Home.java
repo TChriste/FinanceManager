@@ -30,6 +30,10 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    public void onBtnCategories(View view) {
+        Intent intent = new Intent(this, CategoriesActivity.class);
+        startActivity(intent);
+    }
 
 
     public void onBtnComptes(View view) {

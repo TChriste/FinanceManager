@@ -46,6 +46,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ComptesActivity" />
         </activity>
+        <activity
+            android:name=".CategoriesActivity"
+            android:label="@string/title_activity_categories"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home" />
+        </activity>
+        <activity
+            android:name=".EditCategoryActivity"
+            android:label="@string/title_edit_category"
+            android:parentActivityName=".CategoriesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CategoriesActivity" />
+        </activity>
     </application>
 
 </manifest>
