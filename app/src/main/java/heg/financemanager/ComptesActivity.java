@@ -41,7 +41,7 @@ public class ComptesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ComptesActivity.this, AddComptesActivity.class));
+                startActivity(new Intent(ComptesActivity.this, EditComptesActivity.class));
             }
         });
         final ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());

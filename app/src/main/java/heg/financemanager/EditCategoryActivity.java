@@ -42,7 +42,6 @@ public class EditCategoryActivity extends AppCompatActivity {
             btnSave.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    Toast.makeText(EditCategoryActivity.this,"Test",Toast.LENGTH_SHORT).show();
                     saveCategory(v);
                 }
             });
