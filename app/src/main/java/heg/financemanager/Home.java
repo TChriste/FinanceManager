@@ -5,18 +5,41 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 
 public class Home extends AppCompatActivity {
+
+    private ArrayList<String> mNames = new ArrayList<>();
+    private ArrayList<String> mBalance = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        mNames.add("Epargne");
+        mBalance.add("CHF 2500.50");
+
+        mNames.add("Revenu");
+        mBalance.add("CHF 250.50");
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mBalance);
+
+        RecyclerView recyclerView = findViewById(R.id.recylerView);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
