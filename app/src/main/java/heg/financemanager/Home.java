@@ -13,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import heg.financemanager.business.Compte;
+import heg.financemanager.dao.ComptesDAO;
 
 
 public class Home extends AppCompatActivity {
@@ -25,12 +29,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mNames.add("Epargne");
-        mBalance.add("CHF 2500.50");
-
-        mNames.add("Revenu");
-        mBalance.add("CHF 250.50");
-
+        getAccounts();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mBalance);
@@ -51,6 +50,22 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void getAccounts() {
+        final ComptesDAO comptesDAO = new ComptesDAO(getApplicationContext());
+        comptesDAO.open();
+        List<Compte> comptesList = comptesDAO.getComptes();
+        if(!comptesList.isEmpty()){
+            for(Compte compte : comptesList){
+                mNames.add(compte.getLibelle());
+                mBalance.add("CHF " + String.format("%.2f", compte.getSolde()));
+            }
+        }else{
+            mNames.add("Aucun compte");
+            mBalance.add("Veuillez en ajouter un ...");
+        }
+        comptesDAO.close();
     }
 
     public void onBtnCategories(View view) {

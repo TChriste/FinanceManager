@@ -37,6 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         viewHolder.name.setText(mNames.get(i));
+        viewHolder.mBalance.setText(mBalance.get(i));
     }
 
     @Override
