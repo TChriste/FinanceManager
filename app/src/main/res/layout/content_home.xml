@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Home"
-    tools:showIn="@layout/activity_home">
+    tools:showIn="@layout/activity_home"
+    android:background="#f2f2f2">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recylerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    </android.support.v7.widget.RecyclerView>
+
 
     <Button
         android:id="@+id/btn_comptes_manager"
@@ -22,7 +34,7 @@
         android:text="@string/gestion_comptes_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_categories_manger"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recylerView" />
 
     <Button
         android:id="@+id/btn_categories_manger"
@@ -38,6 +50,6 @@
         android:text="@string/gestion_categories_btn"
         app:layout_constraintEnd_toStartOf="@+id/btn_comptes_manager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recylerView" />
 
 </android.support.constraint.ConstraintLayout>
