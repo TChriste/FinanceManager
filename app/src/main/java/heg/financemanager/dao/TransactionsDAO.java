@@ -46,7 +46,7 @@ public class TransactionsDAO extends AbstractDAO {
         super(pContext);
     }
 
-    public Transaction insertCompte(Transaction transaction){
+    public Transaction insertTransaction(Transaction transaction){
         ContentValues values = new ContentValues();
         values.put(MONTANT, transaction.getMontant());
         values.put(CATEGORIE_ID,transaction.getCategorie().getId());
@@ -62,7 +62,7 @@ public class TransactionsDAO extends AbstractDAO {
         return transaction;
     }
 
-    public List<Transaction> getComptes() throws ParseException {
+    public List<Transaction> getTransactions() throws ParseException {
         Cursor cursor = db.rawQuery(SELECT_QUERY,null);
 
         List<Transaction> transactions = new ArrayList<>();
