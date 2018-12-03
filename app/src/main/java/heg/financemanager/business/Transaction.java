@@ -7,16 +7,25 @@ public class Transaction {
     private long id;
     private Compte compte;
     private Categorie categorie;
-    private float montant;
+    private double montant;
     private Date date;
 
-    public Transaction(long id, Date date, Compte compte, Categorie categorie, float montant) {
+    public Transaction(long id, Date date, Compte compte, Categorie categorie, double montant) {
         this.id = id;
         this.date = date;
         this.compte = compte;
         this.categorie = categorie;
         this.montant = montant;
     }
+
+    public Transaction(Date date, Compte compte, Categorie categorie, double montant) {
+        this.id = -1;
+        this.date = date;
+        this.compte = compte;
+        this.categorie = categorie;
+        this.montant = montant;
+    }
+
 
     public long getId() {
         return id;
@@ -50,11 +59,11 @@ public class Transaction {
         this.categorie = categorie;
     }
 
-    public float getMontant() {
+    public double getMontant() {
         return montant;
     }
 
-    public void setMontant(float montant) {
+    public void setMontant(double montant) {
         this.montant = montant;
     }
 }

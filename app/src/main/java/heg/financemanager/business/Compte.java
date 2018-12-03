@@ -44,4 +44,9 @@ public class Compte {
     public void removeToSolde(float montant) {
         this.solde -= montant;
     }
+
+    @Override
+    public String toString() {
+        return this.libelle;
+    }
 }
