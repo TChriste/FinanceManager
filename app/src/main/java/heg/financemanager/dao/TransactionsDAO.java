@@ -30,15 +30,15 @@ public class TransactionsDAO extends AbstractDAO {
 
 
 
-    private final String SELECT_QUERY = "SELECT t.id, t.date, t.montant, t.categorieId, ca.libelle AS categorieLibelle, t.compteId, co.libelle AS compteLibelle, co.solde" +
+    private final String SELECT_QUERY = "SELECT t.id, t.date, t.montant, t.categorieId, ca.libelle AS categorieLibelle, t.compteId, co.libelle AS compteLibelle, co.solde " +
                                         "FROM Transactions t " +
                                         "INNER JOIN Comptes co ON co.id = t.compteId " +
                                         "INNER JOIN Categories ca ON ca.id = t.categorieId ";
 
-    private final String UPDATE_QUERY = "SELECT t.id, t.date, t.montant, t.categorieId, ca.libelle AS categorieLibelle, t.compteId, co.libelle AS compteLibelle, co.solde" +
+    private final String UPDATE_QUERY = "SELECT t.id, t.date, t.montant, t.categorieId, ca.libelle AS categorieLibelle, t.compteId, co.libelle AS compteLibelle, co.solde " +
                                         "FROM Transactions t " +
                                         "INNER JOIN Comptes co ON co.id = t.compteId " +
-                                        "INNER JOIN Categories ca ON ca.id = t.categorieId" +
+                                        "INNER JOIN Categories ca ON ca.id = t.categorieId " +
                                         "WHERE t.id = ?";
 
 
