@@ -89,13 +89,13 @@ public class Home extends AppCompatActivity {
                 mDates.add(formatter.format(transaction.getDate()));
                 mComptes.add(transaction.getCompte().getLibelle());
                 mCategories.add(transaction.getCategorie().getLibelle());
-                mBalance.add(String.valueOf(transaction.getMontant()));
+                mMontants.add("CHF " + String.format("%.2f", transaction.getMontant()));
             }
         }else{
             mDates.add("Aucune transaction effectuée");
             mComptes.add("");
             mCategories.add("");
-            mBalance.add(String.valueOf(""));
+            mMontants.add(String.valueOf(""));
         }
     }
 

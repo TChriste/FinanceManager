@@ -39,9 +39,9 @@ public class RecyclerViewAdapterTransactions extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(@NonNull ViewHolderTransactions viewHolderTransactions, int i) {
         viewHolderTransactions.date.setText(mDates.get(i));
-        //viewHolderTransactions.compte.setText(mComptes.get(i));
-        //viewHolderTransactions.categorie.setText(mCategories.get(i));
-        //viewHolderTransactions.montant.setText(mMontants.get(i));
+        viewHolderTransactions.compte.setText(mComptes.get(i));
+        viewHolderTransactions.categorie.setText(mCategories.get(i));
+        viewHolderTransactions.montant.setText(mMontants.get(i));
     }
 
 
@@ -60,9 +60,9 @@ public class RecyclerViewAdapterTransactions extends RecyclerView.Adapter<Recycl
         public ViewHolderTransactions(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.date);
-            date = itemView.findViewById(R.id.compte);
-            date = itemView.findViewById(R.id.categorie);
-            date = itemView.findViewById(R.id.montant);
+            compte = itemView.findViewById(R.id.compte);
+            categorie = itemView.findViewById(R.id.categorie);
+            montant = itemView.findViewById(R.id.montant);
         }
     }
 }
