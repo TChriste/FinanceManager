@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
     private ArrayList<String> mDates = new ArrayList<>();
     private ArrayList<String> mComptes = new ArrayList<>();
     private ArrayList<String> mCategories = new ArrayList<>();
-    private ArrayList<String> mMontants = new ArrayList<>();
+    private ArrayList<Double> mMontants = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +89,13 @@ public class Home extends AppCompatActivity {
                 mDates.add(formatter.format(transaction.getDate()));
                 mComptes.add(transaction.getCompte().getLibelle());
                 mCategories.add(transaction.getCategorie().getLibelle());
-                mMontants.add("CHF " + String.format("%.2f", transaction.getMontant()));
+                mMontants.add(transaction.getMontant());
             }
         }else{
             mDates.add("Aucune transaction effectuée");
             mComptes.add("");
             mCategories.add("");
-            mMontants.add(String.valueOf(""));
+            mMontants.add((double) 0);
         }
     }
 

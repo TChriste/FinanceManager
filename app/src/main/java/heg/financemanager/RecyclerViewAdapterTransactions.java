@@ -1,6 +1,7 @@
 package heg.financemanager;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +17,12 @@ public class RecyclerViewAdapterTransactions extends RecyclerView.Adapter<Recycl
     private ArrayList<String> mDates = new ArrayList<>();
     private ArrayList<String> mComptes = new ArrayList<>();
     private ArrayList<String> mCategories = new ArrayList<>();
-    private ArrayList<String> mMontants = new ArrayList<>();
+    private ArrayList<Double> mMontants = new ArrayList<>();
 
 
     private Context mContext;
 
-    public RecyclerViewAdapterTransactions(Context mContext,ArrayList<String> mDates, ArrayList<String> mComptes,ArrayList<String> mCategories,ArrayList<String> mMontants) {
+    public RecyclerViewAdapterTransactions(Context mContext,ArrayList<String> mDates, ArrayList<String> mComptes,ArrayList<String> mCategories,ArrayList<Double> mMontants) {
         this.mContext = mContext;
         this.mDates = mDates;
         this.mComptes = mComptes;
@@ -41,7 +42,14 @@ public class RecyclerViewAdapterTransactions extends RecyclerView.Adapter<Recycl
         viewHolderTransactions.date.setText(mDates.get(i));
         viewHolderTransactions.compte.setText(mComptes.get(i));
         viewHolderTransactions.categorie.setText(mCategories.get(i));
-        viewHolderTransactions.montant.setText(mMontants.get(i));
+
+        TextView montant = viewHolderTransactions.itemView.findViewById(R.id.montant);
+        if(mMontants.get(i) < 0){
+            montant.setTextColor(Color.parseColor("#d81b60"));
+        }else{
+            montant.setTextColor(Color.parseColor("#008577"));
+        }
+        viewHolderTransactions.montant.setText("CHF " + String.format("%.2f",mMontants.get(i)));
     }
 
 
