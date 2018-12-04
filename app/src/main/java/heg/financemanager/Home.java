@@ -15,17 +15,29 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import heg.financemanager.business.Compte;
+import heg.financemanager.business.Transaction;
 import heg.financemanager.dao.ComptesDAO;
+import heg.financemanager.dao.TransactionsDAO;
 
 
 public class Home extends AppCompatActivity {
 
+    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY");
+
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mBalance = new ArrayList<>();
+
+
+    private ArrayList<String> mDates = new ArrayList<>();
+    private ArrayList<String> mComptes = new ArrayList<>();
+    private ArrayList<String> mCategories = new ArrayList<>();
+    private ArrayList<String> mMontants = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,19 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        try {
+            getTransactions();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        LinearLayoutManager layoutManagerTransactions = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerViewAdapterTransactions adapterTransactions = new RecyclerViewAdapterTransactions(this,mDates,mComptes,mCategories,mMontants);
+
+        RecyclerView recyclerViewTransaction = findViewById(R.id.recylerViewTransactions);
+        recyclerViewTransaction.setLayoutManager(layoutManagerTransactions);
+        recyclerViewTransaction.setAdapter(adapterTransactions);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +78,25 @@ public class Home extends AppCompatActivity {
                 newFragment.show(getSupportFragmentManager(), "Ajout rapide");
             }
         });
+    }
+
+    private void getTransactions() throws ParseException {
+        final TransactionsDAO transactionsDAO = new TransactionsDAO(getApplicationContext());
+        transactionsDAO.open();
+        List<Transaction> transactionList = transactionsDAO.getTransactions();
+        if(!transactionList.isEmpty()){
+            for(Transaction transaction : transactionList){
+                mDates.add(formatter.format(transaction.getDate()));
+                mComptes.add(transaction.getCompte().getLibelle());
+                mCategories.add(transaction.getCategorie().getLibelle());
+                mMontants.add("CHF " + String.format("%.2f", transaction.getMontant()));
+            }
+        }else{
+            mDates.add("Aucune transaction effectuée");
+            mComptes.add("");
+            mCategories.add("");
+            mMontants.add(String.valueOf(""));
+        }
     }
 
     private void getAccounts() {
