@@ -132,7 +132,7 @@ public class QuickAddDialogFragment extends DialogFragment {
             categoriesDAO.close();
 
             transactionsDAO.open();
-            transactionsDAO.insertTransaction(new Transaction(new Date(),compte,categorie,amount));
+            transactionsDAO.insertTransaction(new Transaction(new Date(),compte,categorie,amount * -1));
             transactionsDAO.close();
 
             comptesDAO.updateCompte(compte);
